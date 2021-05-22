@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,28 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get("/", function(){
+    return array("status" => true, "pesan" => "Hallo Sayang");
+});
+
+Route::get("/hallo/{nama?}/{npm?}", function($nama = "Joe", $npm = NULL){
+    $mhs = array(
+        "nama" => $nama,
+        "npm" => $npm);
+    return array(
+        "status" => true, 
+        "pesan" => "Hallo $nama",
+        "mhs" => $mhs
+    );
+});
+// Buat Controller > php artisan make:controller HomeController
+Route::get("/home", [HomeController::class,  "index"]);
+Route::get("/home/kenalan/{nama?}", [HomeController::class,  "kenalan"]);
+
+//Buat API Controller atau Resource Controller utk kelola data MHS
+//Nama Controller adalah MahasiswaController
+// php artisan make:controller MahasiswaController --api
+//Daftar Resource Controller :MahasiswaController ke path mahasiswa
+Route::apiResource("mahasiswa", MahasiswaController::class);
+
