@@ -43,4 +43,5 @@ Route::get("/home/kenalan/{nama?}", [HomeController::class,  "kenalan"]);
 // php artisan make:controller MahasiswaController --api
 //Daftar Resource Controller :MahasiswaController ke path mahasiswa
 Route::apiResource("mahasiswa", MahasiswaController::class);
+Route::get('/mahasiswa/insert', 'MahasiswaController@insert');
 
