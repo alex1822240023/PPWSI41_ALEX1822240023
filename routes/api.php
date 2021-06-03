@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MahasiswaApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +45,5 @@ Route::get("/home/kenalan/{nama?}", [HomeController::class,  "kenalan"]);
 //Daftar Resource Controller :MahasiswaController ke path mahasiswa
 Route::apiResource("mahasiswa", MahasiswaController::class);
 Route::get('/mahasiswa/insert', 'MahasiswaController@insert');
+Route::apiResource("mhs", MahasiswaApiController::class);
 
