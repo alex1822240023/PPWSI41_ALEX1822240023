@@ -29,3 +29,7 @@ Route::get('/mahasiswa/insert-elq', 'MahasiswaController@insertElq');
 Route::get('/mahasiswa/update-elq', 'MahasiswaController@updateElq');
 Route::get('/mahasiswa/delete-elq', 'MahasiswaController@deleteElq');
 Route::get('/mahasiswa/select-elq', 'MahasiswaController@selectElq');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
