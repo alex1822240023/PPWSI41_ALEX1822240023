@@ -21,6 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:sanctum')->group(function(){
+    Route::apiResource("mhs", MahasiswaApiController::class);
+});
+
 Route::get("/", function(){
     return array("status" => true, "pesan" => "Hallo Sayang");
 });
@@ -45,5 +49,5 @@ Route::get("/home/kenalan/{nama?}", [HomeController::class,  "kenalan"]);
 //Daftar Resource Controller :MahasiswaController ke path mahasiswa
 Route::apiResource("mahasiswa", MahasiswaController::class);
 Route::get('/mahasiswa/insert', 'MahasiswaController@insert');
-Route::apiResource("mhs", MahasiswaApiController::class);
+// Route::apiResource("mhs", MahasiswaApiController::class);
 
